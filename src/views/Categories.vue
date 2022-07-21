@@ -10,7 +10,7 @@
             <div class="col">
                 <Alerts/>
                 <p class="lead text-center">
-                    <router-link class="btn btn-outline-primary btn-lg" :to="{ name: 'edit-category', params: { id: 0 } }">Create a New category</router-link>
+                    <router-link class="btn btn-outline-primary btn-lg" :to="{ name: 'edit-category', params: { id: 0 } }">Create a new category</router-link>
                 </p>
                 <table class="table">
                     <thead>
