@@ -17,6 +17,7 @@ module.exports = {
     'vue/multi-word-component-names': 'off',
     'import/prefer-default-export': 'off',
     'vuejs-accessibility/label-has-for': 'off',
+    'vuejs-accessibility/click-events-have-key-events': 'off',
     'vue/no-mutating-props': 'off',
     'max-len': 'off',
   },

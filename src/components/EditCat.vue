@@ -71,9 +71,9 @@ export default {
     saveChanges() {
       if (this.isValid()) {
         if (this.category.id === 0) {
-          this.createCategoryAction(this.category);
+          this.createCategoryAction({ category: this.category, auth: this.$auth.getAccessToken() });
         } else {
-          this.updateCategoryAction(this.category);
+          this.updateCategoryAction({ category: this.category, auth: this.$auth.getAccessToken() });
         }
         this.$router.push({ name: 'Categories' });
       }

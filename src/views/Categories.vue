@@ -95,7 +95,7 @@ export default {
     async deleteCategory() {
       this.closeModal();
       if (this.categoryToDelete) {
-        await this.deleteCategoryAction(this.categoryToDelete.id);
+        await this.deleteCategoryAction({ id: this.categoryToDelete.id, auth: this.$auth.getAccessToken() });
       }
       /** The loadCategories is not needed,
                  *  but it's nice to query the database

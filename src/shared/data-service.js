@@ -91,9 +91,14 @@ export const getCategoryById = async function (id) {
   }
 };
 
-const updateCategory = async function (category) {
+const updateCategory = async function (category, accessToken) {
   try {
-    const response = await axios.put(`${API}/api/menu/categories/${category.id}`, category);
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+    const response = await axios.put(`${API}/api/menu/categories/${category.id}`, category, config);
     return {
       statusCode: response.status,
       statusMessage: response.statusText,
@@ -104,9 +109,14 @@ const updateCategory = async function (category) {
   }
 };
 
-const createCategory = async function (category) {
+const createCategory = async function (category, accessToken) {
   try {
-    const response = await axios.post(`${API}/api/menu/categories/`, category);
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+    const response = await axios.post(`${API}/api/menu/categories/`, category, config);
     return {
       statusCode: response.status,
       statusMessage: response.statusText,
@@ -117,9 +127,14 @@ const createCategory = async function (category) {
   }
 };
 
-const deleteCategory = async function (id) {
+const deleteCategory = async function (id, accessToken) {
   try {
-    const response = await axios.delete(`${API}/api/menu/categories/${id}`);
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+    const response = await axios.delete(`${API}/api/menu/categories/${id}`, config);
     return {
       statusCode: response.status,
       statusMessage: response.statusText,
@@ -140,9 +155,14 @@ export const getMenuItemById = async function (id) {
   }
 };
 
-const createMenuItem = async function (menuItem) {
+const createMenuItem = async function (menuItem, accessToken) {
   try {
-    const response = await axios.post(`${API}/api/menu/items/`, menuItem);
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+    const response = await axios.post(`${API}/api/menu/items/`, menuItem, config);
     return {
       statusCode: response.status,
       statusMessage: response.statusText,
@@ -153,9 +173,14 @@ const createMenuItem = async function (menuItem) {
   }
 };
 
-const updateMenuItem = async function (menuItem) {
+const updateMenuItem = async function (menuItem, accessToken) {
   try {
-    const response = await axios.put(`${API}/api/menu/items/${menuItem.id}`, menuItem);
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+    const response = await axios.put(`${API}/api/menu/items/${menuItem.id}`, menuItem, config);
     return {
       statusCode: response.status,
       statusMessage: response.statusText,
@@ -166,9 +191,14 @@ const updateMenuItem = async function (menuItem) {
   }
 };
 
-const deleteMenuItem = async function (id) {
+const deleteMenuItem = async function (id, accessToken) {
   try {
-    const response = await axios.delete(`${API}/api/menu/items/${id}`);
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+    const response = await axios.delete(`${API}/api/menu/items/${id}`, config);
     return {
       statusCode: response.status,
       statusMessage: response.statusText,
