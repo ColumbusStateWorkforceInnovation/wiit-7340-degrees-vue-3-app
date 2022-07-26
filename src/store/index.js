@@ -76,19 +76,19 @@ export default createStore({
     setFlashMessageAction({ commit }, message) {
       commit('addFlashMessage', message);
     },
-    async updateCategoryAction({ commit }, category) {
+    async updateCategoryAction({ commit }, request) {
       commit('addFlashMessage', 'Saving Changes .....');
-      const statusData = await dataService.updateCategory(category);
+      const statusData = await dataService.updateCategory(request.category, request.auth);
       if (statusData.statusCode === 204) {
         commit('addFlashMessage', 'Category updated');
-        commit('updateCategories', category);
+        commit('updateCategories', request.category);
       } else {
         commit('addFlashMessage', `Update failed: ${statusData.statusCode} - ${statusData.statusMessage}`);
       }
     },
-    async createCategoryAction({ commit }, category) {
+    async createCategoryAction({ commit }, request) {
       commit('addFlashMessage', 'Saving Changes .....');
-      const statusData = await dataService.createCategory(category);
+      const statusData = await dataService.createCategory(request.category, request.auth);
       if (statusData.statusCode === 200 || statusData.statusCode === 201) {
         commit('addFlashMessage', 'New category created');
         commit('addCategory', statusData.data);
@@ -96,29 +96,29 @@ export default createStore({
         commit('addFlashMessage', `Create failed: ${statusData.statusCode} - ${statusData.statusMessage}`);
       }
     },
-    async deleteCategoryAction({ commit }, id) {
+    async deleteCategoryAction({ commit }, request) {
       commit('addFlashMessage', 'Saving Changes .....');
-      const statusData = await dataService.deleteCategory(id);
+      const statusData = await dataService.deleteCategory(request.id, request.auth);
       if (statusData.statusCode === 204) {
         commit('addFlashMessage', 'Category deleted');
-        commit('deleteCategory', id);
+        commit('deleteCategory', request.id);
       } else {
         commit('addFlashMessage', `Delete failed: ${statusData.statusCode} - ${statusData.statusMessage}`);
       }
     },
-    async updateMenuItemAction({ commit }, menuItem) {
+    async updateMenuItemAction({ commit }, request) {
       commit('addFlashMessage', 'Saving Changes .....');
-      const statusData = await dataService.updateMenuItem(menuItem);
+      const statusData = await dataService.updateMenuItem(request.menuItem, request.auth);
       if (statusData.statusCode === 204) {
-        commit('updateMenuItem', menuItem);
+        commit('updateMenuItem', request.menuItem);
         commit('addFlashMessage', 'Menu item updated');
       } else {
         commit('addFlashMessage', `Update failed: ${statusData.statusCode} - ${statusData.statusMessage}`);
       }
     },
-    async createMenuItemAction({ commit }, menuItem) {
+    async createMenuItemAction({ commit }, request) {
       commit('addFlashMessage', 'Saving Changes .....');
-      const statusData = await dataService.createMenuItem(menuItem);
+      const statusData = await dataService.createMenuItem(request.menuItem, request.auth);
       if (statusData.statusCode === 200 || statusData.statusCode === 201) {
         commit('addFlashMessage', 'New menu item created');
         commit('addMenuItem', statusData.data);
@@ -126,12 +126,12 @@ export default createStore({
         commit('addFlashMessage', `Create failed: ${statusData.statusCode} - ${statusData.statusMessage}`);
       }
     },
-    async deleteMenuItemAction({ commit }, id) {
+    async deleteMenuItemAction({ commit }, request) {
       commit('addFlashMessage', 'Saving Changes .....');
-      const statusData = await dataService.deleteMenuItem(id);
+      const statusData = await dataService.deleteMenuItem(request.id, request.auth);
       if (statusData.statusCode === 204) {
         commit('addFlashMessage', 'Menu item deleted');
-        commit('deleteMenuItem', id);
+        commit('deleteMenuItem', request.id);
       } else {
         commit('addFlashMessage', `Delete failed: ${statusData.statusCode} - ${statusData.statusMessage}`);
       }

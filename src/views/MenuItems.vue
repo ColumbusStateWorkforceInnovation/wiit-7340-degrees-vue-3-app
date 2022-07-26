@@ -60,7 +60,7 @@ export default {
   name: 'MenuItems',
   data() {
     return {
-      articleToDelete: null,
+      itemToDelete: null,
       showModal: false,
       authenticated: false,
     };
@@ -85,7 +85,7 @@ export default {
       await this.getCategoriesAction();
     },
     askToDelete(menuItem) {
-      this.articleToDelete = menuItem;
+      this.itemToDelete = menuItem;
       // eslint-disable-next-line no-console
       console.log('ASK TO DELETE');
       this.showModal = true;
@@ -95,8 +95,8 @@ export default {
     },
     async deleteMenuItem() {
       this.closeModal();
-      if (this.articleToDelete) {
-        await this.deleteMenuItemAction(this.articleToDelete.id);
+      if (this.itemToDelete) {
+        await this.deleteMenuItemAction({ id: this.itemToDelete.id, auth: this.$auth.getAccessToken() });
       }
       /** The loadMenuItems is not needed,
                  *  but it's nice to query the database
@@ -108,8 +108,8 @@ export default {
   computed: {
     ...mapState(['menuItems']),
     modalMessage() {
-      const modalMessage = this.articleToDelete && this.articleToDelete.title
-        ? this.articleToDelete.title
+      const modalMessage = this.itemToDelete && this.itemToDelete.title
+        ? this.itemToDelete.title
         : '';
       return `Would you like to delete ${modalMessage} ?`;
     },

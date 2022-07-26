@@ -1,4 +1,7 @@
 import { createApp } from 'vue';
+import { OktaAuth } from '@okta/okta-auth-js';
+import OktaVue from '@okta/okta-vue';
+import { OAUTH_ISSUER, CLIENT_ID } from '@/shared';
 import App from './App.vue';
 import router from './router';
 import store from './store';
@@ -13,6 +16,15 @@ app.config.globalProperties.$filters = {
     return value.charAt(0).toUpperCase() + value.slice(1);
   },
 };
+
+const oktaAuth = new OktaAuth({
+  issuer: `${OAUTH_ISSUER}`,
+  clientId: `${CLIENT_ID}`,
+  redirectUri: `${window.location.origin}/login/callback`,
+  scopes: ['openid', 'profile', 'email'],
+});
+
+app.use(OktaVue, { oktaAuth });
 
 app.use(store);
 app.use(router);

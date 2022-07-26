@@ -94,9 +94,9 @@ export default {
     saveChanges() {
       if (this.isValid()) {
         if (this.menuItem.id === 0) {
-          this.createMenuItemAction(this.menuItem);
+          this.createMenuItemAction({ menuItem: this.menuItem, auth: this.$auth.getAccessToken() });
         } else {
-          this.updateMenuItemAction(this.menuItem);
+          this.updateMenuItemAction({ menuItem: this.menuItem, auth: this.$auth.getAccessToken() });
         }
         this.$router.push({ name: 'MenuItems' });
       }

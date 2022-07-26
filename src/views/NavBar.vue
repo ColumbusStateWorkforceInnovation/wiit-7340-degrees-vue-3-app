@@ -1,10 +1,12 @@
 <template>
     <div id="nav">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/menu">Menu</router-link> |
-        <router-link to="/categories">Menu Categories</router-link> |
-        <router-link to="/items">Menu Items</router-link> |
-        <router-link to="/about">About</router-link>
+        <router-link to="/">Home</router-link> |&nbsp;
+        <router-link to="/menu">Menu</router-link> |&nbsp;
+        <span v-if='authState && authState.isAuthenticated'><router-link to="/categories">Menu Categories</router-link> |&nbsp;</span>
+        <span v-if='authState && authState.isAuthenticated'><router-link to="/items">Menu Items</router-link> |&nbsp;</span>
+        <router-link to="/about">About</router-link> |&nbsp;
+        <span v-if='authState && authState.isAuthenticated' v-on:click='logout'><strong>Logout</strong></span>
+        <span v-else v-on:click='login'><strong>Login</strong></span>
     </div>
 
 </template>
@@ -12,6 +14,14 @@
 <script>
 export default {
   name: 'NavBar',
+  methods: {
+    async login() {
+      await this.$auth.signInWithRedirect();
+    },
+    async logout() {
+      await this.$auth.signOut();
+    },
+  },
 };
 </script>
 
