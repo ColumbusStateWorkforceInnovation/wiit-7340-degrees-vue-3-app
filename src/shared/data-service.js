@@ -25,7 +25,7 @@ const parseList = (response) => {
   return list;
 };
 
-const handleError = function (error) {
+const handleError = function handleError(error) {
   // eslint-disable-next-line no-console
   console.error(error);
   if (error.response) {
@@ -48,7 +48,7 @@ const handleError = function (error) {
   };
 };
 
-const getMenus = async function () {
+const getMenus = async function getMenus() {
   try {
     const response = await axios.get(`${API}/public/api/menus`);
     return parseList(response);
@@ -59,7 +59,7 @@ const getMenus = async function () {
   }
 };
 
-const getCategories = async function () {
+const getCategories = async function getCategories() {
   try {
     const response = await axios.get(`${API}/api/menu/categories`);
     return parseList(response);
@@ -70,7 +70,7 @@ const getCategories = async function () {
   }
 };
 
-const getItems = async function () {
+const getItems = async function getItems() {
   try {
     const response = await axios.get(`${API}/api/menu/items`);
     return parseList(response);
@@ -81,7 +81,7 @@ const getItems = async function () {
   }
 };
 
-export const getCategoryById = async function (id) {
+export const getCategoryById = async function getCategoryById(id) {
   try {
     const response = await axios.get(`${API}/api/menu/categories/${id}`);
     return parseList(response);
@@ -91,7 +91,7 @@ export const getCategoryById = async function (id) {
   }
 };
 
-const updateCategory = async function (category) {
+const updateCategory = async function updateCategory(category) {
   try {
     const response = await axios.put(`${API}/api/menu/categories/${category.id}`, category);
     return {
@@ -104,7 +104,7 @@ const updateCategory = async function (category) {
   }
 };
 
-const createCategory = async function (category) {
+const createCategory = async function createCategory(category) {
   try {
     const response = await axios.post(`${API}/api/menu/categories/`, category);
     return {
@@ -117,7 +117,7 @@ const createCategory = async function (category) {
   }
 };
 
-const deleteCategory = async function (id) {
+const deleteCategory = async function deleteCategory(id) {
   try {
     const response = await axios.delete(`${API}/api/menu/categories/${id}`);
     return {
@@ -130,7 +130,7 @@ const deleteCategory = async function (id) {
   }
 };
 
-export const getMenuItemById = async function (id) {
+export const getMenuItemById = async function getMenuItemById(id) {
   try {
     const response = await axios.get(`${API}/api/menu/items/${id}`);
     return parseList(response);
@@ -140,7 +140,7 @@ export const getMenuItemById = async function (id) {
   }
 };
 
-const createMenuItem = async function (menuItem) {
+const createMenuItem = async function createMenuItem(menuItem) {
   try {
     const response = await axios.post(`${API}/api/menu/items/`, menuItem);
     return {
@@ -153,7 +153,7 @@ const createMenuItem = async function (menuItem) {
   }
 };
 
-const updateMenuItem = async function (menuItem) {
+const updateMenuItem = async function updateMenuItem(menuItem) {
   try {
     const response = await axios.put(`${API}/api/menu/items/${menuItem.id}`, menuItem);
     return {
@@ -166,7 +166,7 @@ const updateMenuItem = async function (menuItem) {
   }
 };
 
-const deleteMenuItem = async function (id) {
+const deleteMenuItem = async function deleteMenuItem(id) {
   try {
     const response = await axios.delete(`${API}/api/menu/items/${id}`);
     return {
